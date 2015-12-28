@@ -2,24 +2,25 @@
 
 var myApp = angular.module("myApp", []);
 
-myApp.factory('Data', function(){
-    return {message: "I'm data from service"}
+myApp.factory('Avengers', function(){
+    var Avengers = {};
+    Avengers.cast = [{
+        name: "Tom",
+        character: "Loki"
+    },
+        {
+            name: "Paul",
+            character: "Jarvis"
+        },
+        {
+            name: "Tina",
+            character: "Scientist"
+        }
+    ]
+
+    return Avengers;
 })
-
-myApp.filter("reverse", function(Data){
-    return function(text) {
-        return text.split("").reverse().join("") + Data.message;
-    }
-});
-
-myApp.controller('FirstController', function($scope, Data) {
-    $scope.data = Data;
-});
-
-myApp.controller('SecondController', function($scope, Data) {
-    $scope.data = Data;
-    $scope.reversedMesssage = function Reversed(message) {
-        return message.split("").reverse().join("");
-    }
-});
+myApp.controller("AvengersCtrl", function($scope, Avengers){
+    $scope.avengers = Avengers;
+})
 
