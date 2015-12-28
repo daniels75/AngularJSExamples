@@ -6,6 +6,12 @@ myApp.factory('Data', function(){
     return {message: "I'm data from service"}
 })
 
+myApp.filter("reverse", function(Data){
+    return function(text) {
+        return text.split("").reverse().join("") + Data.message;
+    }
+});
+
 myApp.controller('FirstController', function($scope, Data) {
     $scope.data = Data;
 });
