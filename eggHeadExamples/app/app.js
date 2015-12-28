@@ -1,32 +1,19 @@
 'use strict';
 
-angular.module("myApp", ["ui.router"])
-    .config(function config($stateProvider) {
-        $stateProvider.state("index", {
-            url: "",
-            controller: "FirstController as first",
-            templateUrl: "templates/first.html"
-        })
-        $stateProvider.state("second", {
-            url: "/second",
-            controller: "SecondController as second",
-            templateUrl: "templates/second.html"
-        })
+var myApp = angular.module("myApp", []);
 
-    })
+myApp.factory('Data', function(){
+    return {message: "I'm data from service"}
+})
 
-    
-    .service('greeting', function Greeting() {
-        var greeting = this;
-        greeting.message = "Default";
-    })
-    .controller('FirstController', function(greeting) {
-        var first = this;
-        first.greeting = greeting;
-    })
-    .controller('SecondController', function(greeting) {
-        var second = this;
-        second.greeting = greeting;
-    })
-;
+myApp.controller('FirstController', function($scope, Data) {
+    $scope.data = Data;
+});
+
+myApp.controller('SecondController', function($scope, Data) {
+    $scope.data = Data;
+    $scope.reversedMesssage = function Reversed(message) {
+        return message.split("").reverse().join("");
+    }
+});
 
