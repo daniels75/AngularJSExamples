@@ -1,32 +1,24 @@
 'use strict';
 
-var app = angular.module("superhero", []);
+var app = angular.module("myApp", []);
 
-app.directive("superman", function() {
-    return {
-        restrict: "A",
-        link: function() {
-            alert("I'm working stronger");
-        }
-    }
-})
-app.directive("flash", function() {
-    return {
-        restrict: "A",
-        link: function() {
-            alert("I'm working faster");
-        }
+app.directive("enter", function (){
+    return function(scope, element){
+        element.bind("mouseenter", function () {
+            console.log("I'm inside of you");
+        })
     }
 })
 
-app.directive("supermanWithClass", function() {
-    return {
-        restrict: "C",
-        link: function() {
-            alert("Hello from class");
-        }
+app.directive("leave", function (){
+    return function(scope, element){
+        element.bind("mouseleave", function () {
+            console.log("I'm leave");
+        })
     }
 })
+
+
 
 
 
