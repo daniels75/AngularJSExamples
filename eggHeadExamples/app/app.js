@@ -1,26 +1,13 @@
 'use strict';
 
-var myApp = angular.module("myApp", []);
+var app = angular.module("superhero", []);
 
-myApp.factory('Avengers', function(){
-    var Avengers = {};
-    Avengers.cast = [{
-        name: "Tom",
-        character: "Loki"
-    },
-        {
-            name: "Paul",
-            character: "Jarvis"
-        },
-        {
-            name: "Tina",
-            character: "Scientist"
-        }
-    ]
+app.directive("superman", function() {
+    return {
+        restrict: "E",
+        template: "<div>Here I'm to save a day </div>"
+    }
+})
 
-    return Avengers;
-})
-myApp.controller("AvengersCtrl", function($scope, Avengers){
-    $scope.avengers = Avengers;
-})
+
 
