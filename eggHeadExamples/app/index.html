@@ -10,7 +10,12 @@
 </head>
 <body>
 
-    <div enter leave>I'm a content</div>
+    <div ng-controller="AppCtrl">
+        <!-- 1st and 2nd approach -->
+        <!-- div enter="loadMoreTweets()">Roll over to load more tweets</div -->
+
+        <div enter="deleteMoreTweets()">Roll over to load more tweets</div>
+    </div>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>

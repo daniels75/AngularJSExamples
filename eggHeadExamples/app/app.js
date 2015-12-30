@@ -1,22 +1,24 @@
 'use strict';
 
 var app = angular.module("myApp", []);
-
-app.directive("enter", function (){
-    return function(scope, element){
-        element.bind("mouseenter", function () {
-            console.log("I'm inside of you");
-        })
+app.controller("AppCtrl", function($scope){
+    $scope.loadMoreTweets = function(){
+        alert("Load more tweets");
     }
-})
-
-app.directive("leave", function (){
-    return function(scope, element){
-        element.bind("mouseleave", function () {
-            console.log("I'm leave");
-        })
+    $scope.deleteMoreTweets = function(){
+        alert("Delete more tweets");
     }
-})
+});
+app.directive("enter", function(){
+    return function(scope, element, attrs) {
+        element.bind("mouseenter", function(){
+           // 1-st scope.loadMoreTweets();
+            // 2nd scope.$apply("loadMoreTweets()")
+            scope.$apply(attrs.enter)
+        });
+    }
+
+});
 
 
 
