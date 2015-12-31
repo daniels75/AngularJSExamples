@@ -2,28 +2,21 @@
 
 var app = angular.module("myApp", []);
 
-app.controller("AppCtrol", function($scope) {
-    $scope.ctrlFlavor = 'blackberry';
+app.controller("AppCtrl", function($scope){
+    $scope.callHome = function(message) {
+        console.log("calling home: " + message);
+    }
+
 })
-// 2nd approach
-app.directive("drink", function(){
+app.directive("phone", function(){
     return {
         scope: {
-            flavor: '='
+            dial: '&'
         },
-        template: '<input type="text" ng-model="flavor">'
+        template: '<input type="text" ng-model="value">' +
+            '<button ng-click="dial({message:value})">Call home</button>'
     }
 })
-/* 1st approach
-app.directive("drink", function(){
-    return {
-        template: "<div>{{flavor}}</div>",
-        link: function(scope, element, attrs) {
-            scope.flavor =  attrs.flavor
-        }
-    }
-})
-*/
 
 
 
