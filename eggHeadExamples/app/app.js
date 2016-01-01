@@ -1,26 +1,24 @@
 'use strict';
 var app = angular.module("myApp", []);
-var phoneApps = {};
 
-phoneApps.controllers = {};
-phoneApps.controllers.AppCtrl = function($scope) {
-
-    this.sayHi = function() {
-        console.log("Say Hi");
-    }
-
-    return $scope.AppCtrl = this;
-}
-
-phoneApps.directives = {};
-phoneApps.directives.panel = function(){
+app.directive("zippy", function(){
     return {
-        restrict: 'E'
-    }
-}
+        restrict: 'E',
+        transclude: true,
+        scope : {
+            title: '@'
+        },
 
-app.controller(phoneApps.controllers);
-app.directive(phoneApps.directives);
+        template: '<div><h3 ng-click="toggleContent()">{{title}}</h3></div>' +
+        '<div ng-transclude="" ng-show="isContentVisible">Hello world {{title}}</div></div>',
+        link: function(scope) {
+            scope.isContentVisible = false;
+            scope.toggleContent = function() {
+                scope.isContentVisible = !scope.isContentVisible;
+            }
+        }
+    }
+})
 
 
 
