@@ -8,15 +8,13 @@ app.controller("AppCtrl", function($scope){
     }
 
 })
-app.directive("phone", function(){
-    return {
-        scope: {
-            dial: '&'
-        },
-        template: '<input type="text" ng-model="value">' +
-            '<button ng-click="dial({message:value})">Call home</button>'
-    }
-})
 
+app.directive("panel", function(){
+    return {
+        restrict: 'E',
+        transclude: true,
+        template: '<div ng-transclude class="callout">This is a panel component</div>'
+    }
+});
 
 
