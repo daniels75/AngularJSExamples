@@ -1,22 +1,35 @@
 'use strict';
 var app = angular.module("myApp", []);
+var validElement = angular.element("    <div>{{model.input}}</div>");
+this.link = function(scope, element) {
+    scope.$watch("model.input", function (value) {
+        if (value === "password") {
+            console.log("change it");
+            validElement.toggleClass("callout alert");
+        }
 
-app.directive("zippy", function(){
+    });
+};
+app.directive("dumbPassword", function(){
     return {
         restrict: 'E',
-        transclude: true,
-        scope : {
-            title: '@'
+        compile: function(tElem){
+            tElem.append(validElement);
+            return link;
         },
+        replace: true,
+        template: '<div>\n    <input type="text" ng-model="model.input">\n</div>'
+        /* moved to return in compile element
+        link: function(scope, element) {
+            scope.$watch("model.input", function(value){
+                if (value === "password") {
+                    console.log("change it");
+                    element.children(1).toggleClass("callout alert");
+                }
 
-        template: '<div><h3 ng-click="toggleContent()">{{title}}</h3></div>' +
-        '<div ng-transclude="" ng-show="isContentVisible">Hello world {{title}}</div></div>',
-        link: function(scope) {
-            scope.isContentVisible = false;
-            scope.toggleContent = function() {
-                scope.isContentVisible = !scope.isContentVisible;
-            }
+            })
         }
+        */
     }
 })
 
