@@ -1,24 +1,21 @@
 'use strict';
 var app = angular.module("myApp", []);
 
-app.directive("zippy", function(){
+app.directive('dumbPassword', function(){
     return {
         restrict: 'E',
-        transclude: true,
-        scope : {
-            title: '@'
-        },
-
-        template: '<div><h3 ng-click="toggleContent()">{{title}}</h3></div>' +
-        '<div ng-transclude="" ng-show="isContentVisible">Hello world {{title}}</div></div>',
+        replace: true,
+        template: "<div>\n  <input type=\"\" ng-model=\'model.input\'>\n    <div>{{model.input}}</div>\n</div>",
         link: function(scope) {
-            scope.isContentVisible = false;
-            scope.toggleContent = function() {
-                scope.isContentVisible = !scope.isContentVisible;
-            }
+            scope.$watch("model.input", function(value){
+                if (value == 'password') {
+                    console.log("change it");
+                }
+
+            })
         }
     }
-})
+});
 
 
 
