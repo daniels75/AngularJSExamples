@@ -19,17 +19,6 @@ app.directive("dumbPassword", function(){
         },
         replace: true,
         template: '<div>\n    <input type="text" ng-model="model.input">\n</div>'
-        /* moved to return in compile element
-        link: function(scope, element) {
-            scope.$watch("model.input", function(value){
-                if (value === "password") {
-                    console.log("change it");
-                    element.children(1).toggleClass("callout alert");
-                }
-
-            })
-        }
-        */
     }
 })
 
