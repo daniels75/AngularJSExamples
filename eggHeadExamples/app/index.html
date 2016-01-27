@@ -10,12 +10,18 @@
 
 </head>
 <body>
-<div ng-controller="MyCtrl2">
-</div>
+    <script type="text/ng-template" id="zippy.html">
+        <div>
+            <h3 ng-click="toggleContent()">{{title}}</h3>
+            <div ng-show="isContentVisible" ng-transclude=""></div>
+        </div>
+    </script>
+    <input type="text" ng-model="model.title">
+    <input type="text" ng-model="model.content">
 
-    <div ng-controller="MyCtrl">
-        <my-directive></my-directive>
-    </div>
+    <zippy title="{{model.title}}">
+        The content is: {{model.content}}
+    </zippy>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
