@@ -7,24 +7,30 @@ app.config(function($routeProvider){
                 templateUrl: "app.html",
                 controller: "AppCtrl"
             })
-        .when('/pizza/:crust/:toppings', {
-            redirectTo: function(routeParams, path, search) {
-                console.log(routeParams)
-                console.log(path)
-                console.log(search)
-                return "/" + routeParams.crust;
-            }
-        })
-        .when('/deep', {
-            template: "Deep page"
-        })
         .otherwise(
             {
                 redirectTo: "/"
             }
         )
 });
-app.controller("AppCtrl", function($scope, $routeParams){
+app.controller("AppCtrl", function($scope, $q){
+
+    var defer = $q.defer();
+    defer.promise
+        .then(function(weapon){
+            alert("I promised I would show up - " + weapon)
+            return "bow"
+        })
+        .then(function(weapon){
+            alert("me to - " + weapon)
+            return "axe"
+        })
+        .then(function(weapon){
+            alert("and I - " + weapon)
+
+        })
+    defer.resolve("sword");
+
     $scope.model = {
         message: "Address "
     }
