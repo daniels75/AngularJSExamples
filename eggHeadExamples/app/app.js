@@ -2,19 +2,31 @@
 var app = angular.module("myApp", ['ngRoute']);
 app.config(function($routeProvider){
     $routeProvider
-        .when('/:country/:state/:city',
+        .when('/',
             {
                 templateUrl: "app.html",
                 controller: "AppCtrl"
             })
-
+        .when('/pizza/:crust/:toppings', {
+            redirectTo: function(routeParams, path, search) {
+                console.log(routeParams)
+                console.log(path)
+                console.log(search)
+                return "/" + routeParams.crust;
+            }
+        })
+        .when('/deep', {
+            template: "Deep page"
+        })
+        .otherwise(
+            {
+                redirectTo: "/"
+            }
+        )
 });
 app.controller("AppCtrl", function($scope, $routeParams){
     $scope.model = {
         message: "Address "
-        + " country: " + $routeParams.country
-        + " state: " + $routeParams.state
-        + " city: " + $routeParams.city
     }
 });
 
