@@ -2,7 +2,7 @@
 var app = angular.module("myApp", ['ngRoute']);
 app.config(function($routeProvider){
     $routeProvider
-        .when('/:message',
+        .when('/:country/:state/:city',
             {
                 templateUrl: "app.html",
                 controller: "AppCtrl"
@@ -11,7 +11,10 @@ app.config(function($routeProvider){
 });
 app.controller("AppCtrl", function($scope, $routeParams){
     $scope.model = {
-        message: "Message from param: " + $routeParams.message
+        message: "Address "
+        + " country: " + $routeParams.country
+        + " state: " + $routeParams.state
+        + " city: " + $routeParams.city
     }
 });
 
