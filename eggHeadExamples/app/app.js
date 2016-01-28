@@ -2,24 +2,16 @@
 var app = angular.module("myApp", ['ngRoute']);
 app.config(function($routeProvider){
     $routeProvider
-        .when('/',
+        .when('/:message',
             {
                 templateUrl: "app.html",
                 controller: "AppCtrl"
             })
-        .when('/pizza', {
-            template: "Yum!!"
-        })
-        .otherwise(
-            {
-                template: "This doesn't exists"
-            }
-        )
 
 });
-app.controller("AppCtrl", function($scope){
+app.controller("AppCtrl", function($scope, $routeParams){
     $scope.model = {
-        message: "This is my app!!!"
+        message: "Message from param: " + $routeParams.message
     }
 });
 
