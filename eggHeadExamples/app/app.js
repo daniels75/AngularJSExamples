@@ -1,20 +1,23 @@
 'use strict';
 var app = angular.module("myApp", ['ngRoute']);
 app.config(function($routeProvider){
-    /*
-    $routeProvider.when('/',
-        {
-            templateUrl: "app.html",
-            controller: "AppCtrl"
+    $routeProvider
+        .when('/',
+            {
+                templateUrl: "app.html",
+                controller: "AppCtrl"
+            })
+        .when('/pizza', {
+            template: "Yum!!"
         })
-        */
+        .otherwise(
+            {
+                template: "This doesn't exists"
+            }
+        )
+
 });
-app.controller("AppCtrl", function($scope, $route){
-    // this doesn't work - it is too late
-    $route.routes["/"] = {
-        templateUrl: "app.html",
-        controller: "AppCtrl"
-    }
+app.controller("AppCtrl", function($scope){
     $scope.model = {
         message: "This is my app!!!"
     }
