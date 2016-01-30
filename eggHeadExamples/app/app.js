@@ -5,30 +5,27 @@ app.config(function($routeProvider){
         .when('/',
             {
                 templateUrl: "app.html",
-                controller: "AppCtrl",
+                controller: "ViewCtrl",
                 resolve: {
-                    loadData : appCtrl.loadData,
-                    prepData : appCtrl.prepData
+                    loadData : appCtrl.loadData
                 }
             })
 });
-var  appCtrl = app.controller("AppCtrl", function($scope, $q){
+var appCtrl  = app.controller("AppCtrl", function($rootScope){
+    $rootScope.$on("$routeChangeError", function(event, current, previous, rejection){
+        console.log("Failure - reason: " + rejection);
+    })
+})
+var  viewCtrl = app.controller("ViewCtrl", function($scope, $q){
     $scope.model = {
         message: "I'm great "
     }
 });
-appCtrl.loadData = function ($q, $timeout, $route){
+viewCtrl.loadData = function ($q, $timeout, $route){
     console.log($route)
     var defer = $q.defer();
     $timeout(function () {
-        defer.resolve("looadData1");
-    },2000)
-    return defer.promise;
-}
-appCtrl.prepData = function ($q, $timeout){
-    var defer = $q.defer();
-    $timeout(function () {
-        defer.resolve("prepData2");
+        defer.reject("your network is done");
     },2000)
     return defer.promise;
 }
