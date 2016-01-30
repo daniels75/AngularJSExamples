@@ -1,51 +1,23 @@
 'use strict';
 var app = angular.module("myApp", ['ngRoute']);
-// 1st approach
-/*
- app.factory("fruit", function(){
+
+app.factory("game", function(){
      return {
-        name: "orange1"
+        title: "StarCraft"
       }
  })
- */
-app.provider("game", function() {
-    var type;
-    return {
-        setType : function(value) {
-            this.type = value;
-         },
-        $get : function(){
-            return {
-                title: this.type + "Craft"
-            }
-        }
-    }
+
+// 1st
+/*
+angular.injector(["myApp"]).invoke(function(game){
+    alert(game.title);
 })
-app.config(function($provide, gameProvider){
-    gameProvider.setType("War");
+*/
 
-    // 2nd approach
-    $provide.factory("fruit", function() {
-        return {
-            name: "orange2"
-        }
+var appCtrl  = app.controller("AppCtrl", function($scope, game, $injector){
+    // 2nd
+    $injector.invoke(function(game){
+            alert(game.title);
     })
-    // 2nd approach
-    /*
-    $provide.provider("game1", function(){
-        return {
-            $get: function() {
-                return {
-                    title: "StarCraft2"
-                }
-            }
-
-        }
-    })
-    */
-});
-
-var appCtrl  = app.controller("AppCtrl", function($scope, fruit, game){
-    $scope.fruit = fruit.name;
     $scope.title = game.title;
 })
