@@ -7,28 +7,29 @@ app.config(function($routeProvider){
                 templateUrl: "app.html",
                 controller: "AppCtrl",
                 resolve: {
-                    app : function ($q, $timeout){
-                        var defer = $q.defer();
-                        $timeout(function () {
-                            defer.resolve();
-                        },2000)
-
-
-                        return defer.promise;
-                    }
+                    loadData : appCtrl.loadData,
+                    prepData : appCtrl.prepData
                 }
-
             })
-
 });
-app.controller("AppCtrl", function($scope, $q){
-
-
-
+var  appCtrl = app.controller("AppCtrl", function($scope, $q){
     $scope.model = {
         message: "I'm great "
     }
 });
-
-
+appCtrl.loadData = function ($q, $timeout, $route){
+    console.log($route)
+    var defer = $q.defer();
+    $timeout(function () {
+        defer.resolve("looadData1");
+    },2000)
+    return defer.promise;
+}
+appCtrl.prepData = function ($q, $timeout){
+    var defer = $q.defer();
+    $timeout(function () {
+        defer.resolve("prepData2");
+    },2000)
+    return defer.promise;
+}
 
