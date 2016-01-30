@@ -11,6 +11,17 @@ app.config(function($routeProvider){
                 }
             })
 });
+app.directive("error", function($rootScope){
+    return {
+        restrict: "E",
+        template: '<div class="callout alert" ng-show="isError">Error!!!</div>',
+        link: function(scope){
+            $rootScope.$on("$routeChangeError", function(event, current, previous, rejection){
+                scope.isError = true;
+            })
+        }
+    }
+})
 var appCtrl  = app.controller("AppCtrl", function($rootScope){
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection){
         console.log("Failure - reason: " + rejection);
