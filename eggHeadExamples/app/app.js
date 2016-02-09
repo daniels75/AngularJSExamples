@@ -1,23 +1,28 @@
 'use strict';
-var app = angular.module("myApp", ['ngRoute']);
+var app = angular.module("app", ['ngRoute']);
 
-app.factory("game", function(){
-     return {
-        title: "StarCraft"
-      }
- })
+app.directive('clock', function () {
+    return {
+        restrict: 'E',
+        scope: {
+            timezone: '@'
+        },
+        template: '<div>12:00pm {{timezone}}</div>'
+    }
+});
 
-// 1st
-/*
-angular.injector(["myApp"]).invoke(function(game){
-    alert(game.title);
+app.directive('panel', function(){
+    return {
+        restrict: 'E',
+        transclude: true,
+        scope: {
+            title: '@'
+        },
+        template: '<div style="border: 3px solid #000000;">' +
+        '<div class="callout secondary">{{title}}</div>' +
+            '<div ng-transclude></div> ' +
+        '</div>'
+    }
 })
-*/
 
-var appCtrl  = app.controller("AppCtrl", function($scope, game, $injector){
-    // 2nd
-    $injector.invoke(function(game){
-            alert(game.title);
-    })
-    $scope.title = game.title;
-})
+

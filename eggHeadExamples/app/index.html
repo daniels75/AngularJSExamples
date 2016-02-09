@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +11,10 @@
 </head>
 <body>
 
-    <div ng-controller="AppCtrl">
-        {{title}}
-    </div>
+    <clock timezone="MST"></clock>
+    <panel title="ContainerTitle">
+        <clock timezone="PST"></clock>
+    </panel>
 
 
     <script src="bower_components/angular/angular.js"></script>
