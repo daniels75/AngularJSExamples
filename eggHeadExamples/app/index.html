@@ -11,12 +11,13 @@
 </head>
 <body>
 
+    <div ng-controller="MainCtrl as app">
+        <div ng-repeat-start="thing in app.things">{{thing}}</div>
+            Anything inside {{thing}}
+        <div ng-repeat-end="">In the end {{thing}}</div>
+    </div>
 
-    <country>
-        <state>
-            <city></city>
-        </state>
-    </country>
+
 
 
     <script src="bower_components/angular/angular.js"></script>
