@@ -1,6 +1,6 @@
 'use strict';
-var app = angular.module("app", ['ngRoute']);
+var app = angular.module("app", ['ngRoute','ngAnimate']);
 
-app.controller("MainCtrl", function(){
-    this.things = ["one", "two", "three"]
+app.controller("AppCtrl", function(){
+    this.toggle = true;
 })

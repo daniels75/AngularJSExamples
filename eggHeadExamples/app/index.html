@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +7,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="foundation.min.css">
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
 
-    <div ng-controller="MainCtrl as app">
-        <div ng-repeat-start="thing in app.things">{{thing}}</div>
-            Anything inside {{thing}}
-        <div ng-repeat-end="">In the end {{thing}}</div>
+    <div ng-controller="AppCtrl as app">
+        <div class="button" ng-click="app.toggle=!app.toggle">Toggle Animation {{app.toggle}}</div>
+        <div class="toggle" ng-if="app.toggle">Some text</div>
     </div>
 
 
@@ -23,6 +23,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="app.js"></script>
 
 
