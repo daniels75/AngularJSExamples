@@ -11,10 +11,10 @@
 </head>
 <body>
 
-    <clock timezone="MST"></clock>
-    <panel title="ContainerTitle">
-        <clock timezone="PST"></clock>
-    </panel>
+    <div  class="button" ng-click="$log.debug($event)"
+            ng-repeat="item in 'abcdefghi'.split('')">
+        {{$index}}. {{item}}
+    </div>
 
 
     <script src="bower_components/angular/angular.js"></script>
